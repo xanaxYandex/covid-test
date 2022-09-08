@@ -1,4 +1,4 @@
-import {IApiDefaultParams, IApiDefaultResponse} from './api-default';
+import {IApiDefaultParams, IApiDefaultResponse} from './api.default';
 
 export type DateLike = string;
 

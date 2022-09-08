@@ -1,0 +1,11 @@
+:host {
+    min-height: 100vh;
+    display: block;
+    position: relative;
+}
+
+app-header {
+    z-index: 99;
+    position: sticky;
+    top: 0;
+}

@@ -1,4 +1,5 @@
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {OauthService} from '../../shared/services/oauth.service';
 
 @Component({
     selector: 'app-landing',
@@ -6,13 +7,13 @@ import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
     styleUrls: ['./landing.component.scss'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class LandingComponent implements OnInit {
+export class LandingComponent {
 
-    constructor() {
+    constructor(private oauth: OauthService) {
     }
 
-    public ngOnInit(): void {
-
+    public signIn(): void {
+        this.oauth.redirectToOAuthLogin();
     }
 
 }

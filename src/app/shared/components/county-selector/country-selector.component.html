@@ -1,0 +1,30 @@
+<div class="select" #wrapper>
+    <div class="select__header" [ngClass]="showOptions ? 'select_expanded' : 'select_minimized'">
+        <ng-container *ngIf="value; else placeholderTemplate">
+            <b class="select__content" (click)="switchShowingOptions()">{{value.name}}</b>
+        </ng-container>
+
+        <ng-template #placeholderTemplate>
+            <span class="select__content select__placeholder" (click)="switchShowingOptions()">{{placeholder}}</span>
+        </ng-template>
+
+        <div class="select__button" (click)="switchShowingOptions()">
+            <i class="fa fa-chevron-down"></i>
+        </div>
+    </div>
+
+    <div class="select__options"
+         *ngIf="showOptions"
+         [class.overflow-auto]="overflowAuto"
+         [@grow]="{value: ':enter', params:{optionsHeight}}">
+        <div class="input-field">
+            <input type="text" placeholder="Type country name..."
+                   [formControl]="control">
+        </div>
+        <div class="option"
+             *ngFor="let option of options | searchCountry: (controlValue$ | async)"
+             (click)="value = option; switchShowingOptions()">
+            <span class="middle-text">{{option.name}}</span>
+        </div>
+    </div>
+</div>

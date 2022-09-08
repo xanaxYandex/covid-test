@@ -1,0 +1,42 @@
+:host {
+    position: relative;
+    padding: 25px 70px;
+    display: flex;
+    background: white;
+    border-bottom: 3px solid var(--main-red);
+    box-shadow: 0 0 10px var(--main-red);
+}
+
+.logo {
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 50px auto;
+    align-items: center;
+    grid-column-gap: 15px;
+
+    &__img {
+
+    }
+
+    &__text {
+        font-size: 28px;
+    }
+}
+
+.side-container {
+    display: flex;
+    gap: 20px;
+    margin-left: auto;
+
+    .user {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        justify-content: center;
+
+        &__name {
+            font-weight: 500;
+            font-size: 18px;
+        }
+    }
+}

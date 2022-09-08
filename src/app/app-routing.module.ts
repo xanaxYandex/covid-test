@@ -10,7 +10,7 @@ const routes: Routes = [
         canActivate: [UnauthorizedGuard]
     },
     {
-        path: '',
+        path: 'main',
         loadChildren: () => import('./modules/authorized-layout/authorized-layout.module').then(m => m.AuthorizedLayoutModule),
         canActivate: [AuthorizedGuard]
     },

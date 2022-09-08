@@ -1,0 +1,14 @@
+<div class="logo">
+    <div class="logo__img"><img src="assets/images/corona-large.png" alt="Corona Icon"></div>
+    <div class="logo__text">Corona 19 Test App</div>
+</div>
+
+<div class="side-container" *ngIf="isLoggedIn$ | async">
+    <div class="user" *ngIf="user$ | async as user">
+        <div class="user__name">{{user.name}}</div>
+        <div class="user__email">{{user.email}}</div>
+    </div>
+    <button class="btn" (click)="logOut()">Log out</button>
+</div>
+
+

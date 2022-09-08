@@ -1,1 +1,68 @@
-<p>authorized-layout works!</p>
+<app-country-selector [formControl]="countryControl"
+                      placeholder="Country"
+                      [options]="countries"
+></app-country-selector>
+
+<div class="info-container">
+    <div class="info-header">
+        <h1>Statistics for {{(countryValue$ | async)?.name ?? '(Choose a country)'}}</h1>
+        <small *ngIf="updatedAt">Last update: {{updatedAt | date: 'dd MMMM yyyy, HH:mm'}}</small>
+    </div>
+    <div class="layouts">
+        <section class="cases-layout layouts__item">
+            <h2 class="layouts__header">Cases</h2>
+
+            <div class="layouts__content" *ngIf="(coronaCases$ | async) as cases; else noData">
+                <ng-container *ngIf="(casesLoading$ | async) === false; else loader">
+                    <div class="property" *ngFor="let prop of propertiesToDisplay">
+                        <div class="property__name">{{prop.value}}</div>
+                        <div class="property__value">{{cases[prop.key]}}</div>
+                    </div>
+                </ng-container>
+            </div>
+        </section>
+        <section class="vaccines-layout layouts__item">
+            <h2 class="layouts__header">Vaccines</h2>
+
+            <div class="layouts__content" *ngIf="coronaVaccines$ | async as vaccines; else noData">
+                <ngx-charts-pie-chart
+                    *ngIf="(vaccinesLoading$ | async) === false; else loader"
+                    [view]="[300, 300]"
+                    [legend]="true"
+                    [legendPosition]="legendPos"
+                    [results]="vaccines.data"></ngx-charts-pie-chart>
+                <small *ngIf="vaccines.percentVaccinated; else noVaccinationData">
+                    Vaccinated level in % of total population: {{vaccines.percentVaccinated}} %
+                </small>
+                <ng-template #noVaccinationData>No data about vaccination level</ng-template>
+            </div>
+        </section>
+        <section class="history-layout layouts__item">
+            <h2 class="layouts__header">History</h2>
+
+            <div class="layouts__content" *ngIf="(coronaHistory$ | async) as history; else noData">
+                <h2 style="text-align: center">{{history.country}}</h2>
+                <ngx-charts-line-chart
+                    *ngIf="(historyLoading$ | async)  === false; else loader"
+                    [showXAxisLabel]="true"
+                    [showYAxisLabel]="true"
+                    [xAxis]="true"
+                    [yAxis]="true"
+                    [xAxisLabel]="xAxisLabel"
+                    [yAxisLabel]="yAxisLabel"
+                    [autoScale]="true"
+                    [results]="history.data"></ngx-charts-line-chart>
+            </div>
+        </section>
+    </div>
+</div>
+
+<ng-template #loader>
+    <div class="loader-container">
+        <app-loader></app-loader>
+    </div>
+</ng-template>
+
+<ng-template #noData>
+    <span class="nodata-message">No data</span>
+</ng-template>

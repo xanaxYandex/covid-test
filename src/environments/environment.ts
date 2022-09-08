@@ -4,7 +4,12 @@
 
 export const environment = {
     production: false,
-    coronaApi: 'https://covid-api.mmediagroup.fr/v1'
+    coronaApi: 'https://covid-api.mmediagroup.fr/v1',
+    auth0Config: {
+        domain: 'dev-jl0dzt91.us.auth0.com',
+        clientId: 'eFTQkAXbn34WNxbvr407jFIHcl08Aarf',
+        redirectUri: document.location.origin
+    }
 };
 
 /*
