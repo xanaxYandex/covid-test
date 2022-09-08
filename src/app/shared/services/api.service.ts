@@ -29,7 +29,7 @@ export class ApiService {
             .pipe(
                 map((res) => res['All']),
                 tap(() => this.casesLoadingSource.next(false)),
-                catchError((err) => of(null))
+                catchError(() => of(null))
             );
     }
 
@@ -40,7 +40,7 @@ export class ApiService {
             .pipe(
                 map((res) => res['All']),
                 tap(() => this.vaccinesLoadingSource.next(false)),
-                catchError((err) => of(null))
+                catchError(() => of(null))
             );
     }
 
@@ -51,7 +51,7 @@ export class ApiService {
             .pipe(
                 map((res) => res['All']),
                 tap(() => this.historyLoadingSource.next(false)),
-                catchError((err) => of((null)))
+                catchError(() => of(null))
             );
     }
 

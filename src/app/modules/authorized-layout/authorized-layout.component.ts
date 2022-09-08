@@ -66,7 +66,6 @@ export class AuthorizedLayoutComponent {
             res ? {
                 percentVaccinated: getVaccinatedPercent(res),
                 data: [
-                    // {name: 'Partially vaccinated', value: res.people_partially_vaccinated},
                     {name: 'Vaccinated', value: res.people_vaccinated},
                     {name: 'Not vaccinated', value: getNotVaccinatedAmount(res)},
                 ]
